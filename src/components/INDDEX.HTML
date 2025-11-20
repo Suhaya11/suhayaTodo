@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // URL of the API you want to send the request to
+        const url = 'https://salfat.com.ng/api/v1/user.php';
+
+        // Auth token
+        const authToken = "HeFjodItGAvgKrlIPJ6iaH74393zCeF85ujkZEPEr0eV5NR"; // replace this with your token
+
+        // Function to make the API request using fetch
+        async function fetchData() {
+            try {
+                const response = await fetch(url, {
+                    method: 'GET', // The PHP example uses a GET request (CURLOPT_POST, 0)
+                    headers: {
+                        'Authorization': authToken, // Include the Authorization header
+                        'Content-Type': 'application/json' // Often good practice to specify content type
+                    }
+                });
+
+                // Check if the request was successful
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                // Parse the response body as JSON (adjust if the API returns non-JSON data)
+                const data = await response.json();
+
+                // Output the response
+                console.log(data);
+                return data;
+
+            } catch (error) {
+                // Handle any errors that occurred during the fetch operation
+                console.error('Fetch Error:', error.message);
+            }
+        }
+
+        // Call the function to execute the request
+        fetchData();
+
+    </script>
+</body>
+
+</html>
