@@ -27,7 +27,7 @@ const Tasks = () => {
         <h3 className="title">Going to schoole</h3>
         <span className="markAsCompleted">
           <input type="checkbox" name="markAsCompleted" id="markAsCompleted" />
-          {viewport.width > 400 && (
+          {viewport.width > 500 && (
             <label htmlFor="markAsCompleted">Mark as completed</label>
           )}
         </span>

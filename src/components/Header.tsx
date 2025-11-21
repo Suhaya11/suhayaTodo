@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Header = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(true);
   const menuModal = document.querySelector(".menuUl") as HTMLUListElement;
   const showMenuModal = () => {
     if (!menuOpen) {
