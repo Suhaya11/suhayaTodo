@@ -1,24 +1,40 @@
 import "./App.css";
 import Header from "./components/Header";
 import { NewTask } from "./components/NewTask";
-
+import Tasks from "./components/Tasks";
+interface myTaskArrMember {
+  name: string;
+  date: string;
+  time: string;
+  creationDate: Date;
+  discription?: string;
+}
 function App() {
   class Task {
     constructor(
-      private name: string,
-      private date: string,
-      private time: string,
-      private discription?: string
+      public name: string,
+      public date: string,
+      public time: string,
+      public creationDate: Date,
+      public discription?: string
     ) {}
   }
-  const myTasks: object[] = [];
+
+  const myTasks: myTaskArrMember[] = [
+    // {
+    //   name: "going to school",
+    //   date: new Date().getUTCDate(),
+    //   time: new Date().getHours(),
+    // },
+  ];
   const newTaskC = (
     name: string,
     date: string,
     time: string,
+    creationDate: Date,
     discription?: string
   ) => {
-    const myTask = new Task(name, date, time, discription);
+    const myTask = new Task(name, date, time, creationDate, discription);
     myTasks.push(myTask);
     console.log(myTasks);
   };
@@ -34,6 +50,7 @@ function App() {
       <Header />
 
       <div className="wrapper">
+        <Tasks myTasks={myTasks} />
         <NewTask newTaskC={newTaskC} />
       </div>
     </>

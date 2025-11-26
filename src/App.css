@@ -4,6 +4,9 @@ body {
 
   cursor: default;
 }
+textarea {
+  max-width: 30vw !important;
+}
 header {
   display: flex;
   justify-content: space-between;
@@ -175,16 +178,21 @@ textarea {
   outline: none;
   min-width: 200px;
   min-height: 30px;
+  max-width: 100px;
 }
-label::after {
+
+div label::after {
   content: ' : ';
 }
+label[for='markAsCompleted']::after {
+  content: '';
+}
 .formWrapper form input {
-  border: 2px solid brown;
   outline: none;
   padding: 8px;
   border-radius: 10px;
   margin-left: 5px;
+  border: #fff 5px solid;
 }
 #btn-div {
   justify-content: end;

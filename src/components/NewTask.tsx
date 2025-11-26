@@ -5,6 +5,8 @@ interface AddTaskProp {
     name: string,
     date: string,
     time: string,
+
+    creationDate: Date,
     discription?: string
   ) => void;
 }
@@ -20,7 +22,9 @@ const NewTask: React.FC<AddTaskProp> = ({ newTaskC }) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          newTaskC(taskName, taskDate, taskTime, taskDiscription);
+          newTaskC(taskName, taskDate, taskTime, new Date(), taskDiscription);
+          console.log(new Date(`${taskDate}T02:${taskTime}Z`).getMinutes());
+          console.log(new Date("2025-11-23T02:" + "13:00Z"));
         }}
       >
         <div>
