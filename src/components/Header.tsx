@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(true);
@@ -10,6 +11,7 @@ const Header = () => {
       menuModal?.classList.add("hideMenu");
     }
   };
+
   return (
     <>
       <header>
@@ -28,7 +30,12 @@ const Header = () => {
         {!menuOpen && (
           <ul className={"menuUl"}>
             <li className="home">
-              <span>Home</span>
+              <span>
+                <Link className="navlink" to={"/"}>
+                  {" "}
+                  Home
+                </Link>
+              </span>
 
               <span
                 className="closeMenu"
@@ -40,9 +47,24 @@ const Header = () => {
                 &times;
               </span>
             </li>
-            <li className="new">New</li>
-            <li className="completed">completed</li>
-            <li className="about">About</li>
+            <li className="new">
+              <Link className="navlink" to={"/new"}>
+                {" "}
+                New
+              </Link>
+            </li>
+            <li className="completed">
+              {" "}
+              <Link className="navlink" to={"/completed"}>
+                completed
+              </Link>
+            </li>
+            <li className="about">
+              {" "}
+              <Link className="navlink" to="/about">
+                About
+              </Link>
+            </li>
           </ul>
         )}
       </header>

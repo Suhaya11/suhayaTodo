@@ -4,6 +4,10 @@ body {
 
   cursor: default;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 textarea {
   max-width: 30vw !important;
 }
@@ -79,6 +83,9 @@ header ul li:hover {
   right: 10px;
 }
 @media (max-width: 500px) {
+  header ul li span .navlink {
+    color: white;
+  }
   .remainingTime {
     font-size: 0.8rem;
     padding: 0;
