@@ -82,6 +82,32 @@ header ul li:hover {
   position: absolute;
   right: 10px;
 }
+.aboutWrapper {
+  background-color: rgb(86, 187, 91);
+
+  margin: 100px auto;
+  padding: 10px;
+  text-align: center;
+
+  align-items: center;
+}
+.contactMe p,
+.contactMe ul {
+  text-align: left;
+}
+.contactMe ul li {
+  list-style: none;
+  margin: 10px 0;
+}
+.contactMe ul li a {
+  color: blue;
+  text-decoration: underline;
+}
+.aboutWrapper img {
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: 30px;
+}
 @media (max-width: 500px) {
   header ul li span .navlink {
     color: white;
