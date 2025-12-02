@@ -1,5 +1,5 @@
 import getTimeDefference from "./getTimeDefference";
-export interface myTaskArrMember {
+interface myTaskArrMember {
   name: string;
   date: string;
   time: string;
@@ -7,28 +7,24 @@ export interface myTaskArrMember {
   creationDate: number;
   discription?: string;
 }
-export interface myProps {
-  myTasks: myTaskArrMember[];
+interface myProps {
   completedTasks: myTaskArrMember[];
-  setMyTasks: React.Dispatch<React.SetStateAction<myTaskArrMember[]>>;
+  myTasks: myTaskArrMember[];
   setCompletedTask: React.Dispatch<React.SetStateAction<myTaskArrMember[]>>;
 }
-
-const Tasks: React.FC<myProps> = ({ myTasks, setMyTasks, completedTasks }) => {
-  const lokaci = new Date();
-  let tempoTask: myTaskArrMember[] = [];
-
-  new Date();
+const CompletedTasks: React.FC<myProps> = ({
+  myTasks,
+  completedTasks,
+  setCompletedTask,
+}) => {
+  let tempoComp: myTaskArrMember[] = [];
   const viewport = window.visualViewport as VisualViewport;
-  //   const yanzuforCalc = lokaci.getTime();
-  console.log(viewport.width);
-  myTasks.map((task) => console.log(task.name));
-  console.log(window.sessionStorage);
+  const lokaci = new Date();
 
   return (
     <div className="tasks">
-      {myTasks?.map((task) => {
-        if (task.status != "deleted" && task.status != "completed") {
+      {completedTasks?.map((task) => {
+        if (task.status != "deleted") {
           return (
             <>
               <div className="individualTask " key={task.creationDate}>
@@ -39,47 +35,38 @@ const Tasks: React.FC<myProps> = ({ myTasks, setMyTasks, completedTasks }) => {
                     name="markAsCompleted"
                     id="markAsCompleted"
                     onClick={() => {
-                      myTasks?.map((anytask) => {
+                      completedTasks?.map((anytask) => {
                         if (anytask.creationDate != task.creationDate) {
-                          tempoTask.push(anytask);
+                          tempoComp.push(anytask);
                         } else {
-                          completedTasks.push(anytask);
+                          myTasks.push(anytask);
                           console.log(anytask);
-                          anytask.status = "completed";
-                          localStorage.setItem(
-                            "my",
-                            `${JSON.stringify({
-                              myTasks,
-                            })}`
-                          );
+                          anytask.status = "deleted";
                           localStorage.setItem(
                             "completed",
                             `${JSON.stringify({
                               completedTasks,
                             })}`
                           );
-                          console.log(
-                            "task completed" + localStorage.getItem("completed")
-                          );
                         }
                       });
-                      setMyTasks(tempoTask);
-                      console.log("mu tempo: " + tempoTask);
+                      setCompletedTask(tempoComp);
+                      console.log("mu tempo: " + tempoComp);
                       console.log("my tasks: " + myTasks);
-                      tempoTask = [];
+                      tempoComp = [];
                     }}
                   />
                   {viewport.width > 400 && (
-                    <label htmlFor="markAsCompleted">Mark as completed</label>
+                    <label htmlFor="markAsCompleted">Delete</label>
                   )}
                 </span>
                 <p className="description">{task.discription}</p>
                 <div className="taskInfo">
-                  <span className="status">To be done</span>
+                  <span className="status">{task.status}</span>
                   <span className="taskTime">{task.time}</span>
                   <span className="remainingTime">
                     {getTimeDefference(
-                      "feature",
+                      "back",
                       lokaci,
                       `${task.date}T`,
                       `${task.time}`
@@ -95,4 +82,4 @@ const Tasks: React.FC<myProps> = ({ myTasks, setMyTasks, completedTasks }) => {
   );
 };
 
-export default Tasks;
+export default CompletedTasks;
